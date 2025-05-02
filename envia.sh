@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # The name to show in queue lists for this job:
-#SBATCH -J linear_opf
+#SBATCH -J sum_a_b_c
 
 # Number of desired cores (can be in any node):
 ##SBATCH --ntasks=1
@@ -12,7 +12,7 @@
 #SBATCH --mem=4gb
 
 # The time the job will be running (7 days):  
-#SBATCH --time=0-04:00:00
+#SBATCH --time=0-00:01:00
 ##SBATCH --gres=:gpu:1
 
 # If you need nodes with special features uncomment the desired constraint line:
@@ -28,17 +28,14 @@
 #SBATCH --output=zzz.%A.%a.out
 
 # MAKE AN ARRAY JOB, SLURM_ARRAYID will take values from 1 to 100
-#SBATCH --array=1-100
+#SBATCH --array=1-20
 
 # To load some software (you can show the list with 'module avail'):
 sleep $SLURM_ARRAY_TASK_ID
 module purge
-module load ampl/20231031_2024
-module load cplex/20.1.0
-module load ipopt/3.12.8
-#module load tensorflow/2.13.0
+module load python/3.11.4
 
 # the program to execute with its parameters:
 hostname
-time python 11_linear_opf.py
+time python main.py
 

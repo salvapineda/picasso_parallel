@@ -36,9 +36,9 @@ def subcases(n_cases, sarray, slurm):
 sarray = 20  # Number of tasks to divide the cases into
 
 # SLURM job index (set to 0 for local testing)
-slurm = 0
+#slurm = 0
 # Uncomment the following line when running on a SLURM cluster
-# slurm = int(os.environ['SLURM_ARRAY_TASK_ID']) - 1
+slurm = int(os.environ['SLURM_ARRAY_TASK_ID']) - 1
 
 # Run the function for the subcases associated with the current SLURM job
 for i in subcases(len(cases), sarray, slurm):
